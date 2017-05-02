@@ -1,3 +1,5 @@
+[![Gem Version](https://badge.fury.io/rb/is_numeric.svg)](https://badge.fury.io/rb/is_numeric)
+
 # is_numeric
 
 This gem just expand the String class to provide a method called 'numeric?' that verify if a string have a numeric value.
