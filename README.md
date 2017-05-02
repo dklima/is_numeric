@@ -1,8 +1,6 @@
-# IsNumeric
+# is_numerica
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/is_numeric`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+This gem just expand the String class to provide a method called 'numeric?' that verify if a string have a numeric value.
 
 ## Installation
 
@@ -22,7 +20,25 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```
+[1] pry(main)> require 'is_numeric'
+=> true
+
+[2] pry(main)> string1 = "Just a test"
+=> "Just a test"
+[3] pry(main)> string1.numeric?
+=> false
+
+[4] pry(main)> string2 = "10.1"
+=> "10.1"
+[5] pry(main)> string2.numeric?
+=> true
+
+[6] pry(main)> string3 = "1"
+=> "1"
+[7] pry(main)> string3.numeric?
+=> true
+```
 
 ## Development
 
@@ -32,7 +48,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/is_numeric.
+Bug reports and pull requests are welcome on GitHub at https://github.com/dklima/is_numeric.
 
 
 ## License
