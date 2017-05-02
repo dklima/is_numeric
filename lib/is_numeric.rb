@@ -1,5 +1,9 @@
-require "is_numeric/version"
+require 'is_numeric/version'
 
-module IsNumeric
-  # Your code goes here...
+# Extending the class String to perform checks on string to get
+# if is a number
+class String
+  def numeric?
+    !(self !~ /^-?\d+(\.\d*)?$/)
+  end
 end
