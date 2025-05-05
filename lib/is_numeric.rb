@@ -4,8 +4,8 @@ require 'is_numeric/version'
 # if is a number
 module IsNumeric
   def numeric?
-    !(self !~ /^-?\d+(\.\d*)?$/)
+    !!Float(self) rescue false
   end
 end
 
-String.include IsNumeric
+String.include(IsNumeric)

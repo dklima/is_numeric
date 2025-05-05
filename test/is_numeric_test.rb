@@ -1,38 +1,58 @@
 require 'test_helper'
 
-# Test for numeric? method
 describe String do
+  # Extract constants for test data
+  TEST_STRINGS = {
+    text: 'Just a test',
+    float: '10.1',
+    integer: '10',
+    invalid_float: '10.1.1',
+    multiple_dots: '10.1.1.1',
+    mixed_number: '10 hello',
+    mixed_complex: 'hello 10.world'
+  }.freeze
+
   before do
-    @string1 = 'Just a test'
-    @string2 = '10.1'
+    @strings = TEST_STRINGS.transform_values(&:dup)
   end
 
-  after do
-    @string1 = nil
-    @string2 = nil
-  end
-
-  describe 'object' do
-    it 'must be kind of String' do
-      expect(@string1).must_be_kind_of String
-      expect(@string2).must_be_kind_of String
+  describe 'basic requirements' do
+    it 'ensures all test strings are String objects' do
+      @strings.each_value do |str|
+        expect(str).must_be_kind_of String
+      end
     end
 
-    it 'must have a method numeric?' do
-      expect(@string1).must_respond_to :numeric?
-      expect(@string2).must_respond_to :numeric?
+    it 'ensures numeric? method is available' do
+      @strings.each_value do |str|
+        expect(str).must_respond_to :numeric?
+      end
     end
   end
 
-  describe 'string with chars must be false' do
-    it 'must return false if string have chars' do
-      expect(@string1.numeric?).must_equal false
+  describe '#numeric? with valid numbers' do
+    it 'returns true for integer strings' do
+      expect(@strings[:integer].numeric?).must_equal true
+    end
+
+    it 'returns true for float strings' do
+      expect(@strings[:float].numeric?).must_equal true
     end
   end
 
-  describe 'string with numbers must be true' do
-    it 'must return true if string have number' do
-      expect(@string2.numeric?).must_equal true
+  describe '#numeric? with invalid numbers or mixed content' do
+    it 'returns false for text-only strings' do
+      expect(@strings[:text].numeric?).must_equal false
+    end
+
+    it 'returns false for invalid float formats' do
+      expect(@strings[:invalid_float].numeric?).must_equal false
+      expect(@strings[:multiple_dots].numeric?).must_equal false
+    end
+
+    it 'returns false for strings containing mix of numbers and text' do
+      expect(@strings[:mixed_number].numeric?).must_equal false
+      expect(@strings[:mixed_complex].numeric?).must_equal false
     end
   end
 end
